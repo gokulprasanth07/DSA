@@ -74,8 +74,14 @@ Array.prototype.myFilter = function (cb) {
 
 Array.prototype.myReduce = function (cb, init) {
     let arr = this;
-    let acc = init ? init : 0;
-    let startIndex = init ? 0 : 1;
+    let acc, startIndex;
+    if (init !== undefined) {
+        acc = init;
+        startIndex = 0;
+    } else {
+        acc = arr[0];
+        startIndex = 1;
+    }
 
     for (let i = startIndex; i < arr.length; i++) {
         acc = cb(acc, arr[i], i, arr);
